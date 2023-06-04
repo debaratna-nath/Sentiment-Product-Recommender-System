@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sentiment Based Product Recommendation System</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+  <link rel = "stylesheet" href="loader.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.0.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.0.0/umd/react-dom.production.min.js"></script>
+</head>
+
+<body id="content" style="font-family: 'Noto Sans JP', sans-serif;">
+
+	<div class="ml-container" style="display: block;">
+    <centre><div class="header_line" style="background-color: #abe5fc;font-size: 40px;"> Sentiment Based Recommendation System</div></centre>
+    <form action="/recommendations" method="post">
+      <br>
+      <input type="text" name="usernameRec" placeholder="Enter the User Name" style="background-color: #fbfbfb;border-color:#ffc0c0;width: 60%;color: #a75555; border-radius: 15px; height: 30px;" required/>
+      <br>
+      <br>
+      <button type="submit" style = "background-color: rgb(126, 196, 214);
+      border-radius: 15px;
+      color: white;
+      font-size: 16px;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;">Search</button>
+      <hr>
+    </form>
+
+	</div>
+<div style = "border-color: #cecece; border-radius: 5px;">
+  {% if recommendations %}
+    <h2>Recommendations</h2>
+    <ul>
+      {% for recommendation in recommendations %}
+        <li>{{ recommendation }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+  <div id="loader" class="text-center">
+    <h3>{{failure}}</h3>
+  </div>
+	
+<script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/js/autoComplete.min.js"></script>
+  <script type="text/javascript" src="{{url_for('static', filename='autocomplete.js')}}"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="{{url_for('static', filename='recommend.js')}}"></script>
+  <script src="scripts/recommendations.js"></script> 
+
+</body>
+</html>
